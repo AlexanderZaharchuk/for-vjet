@@ -1,13 +1,5 @@
 <?php
-error_reporting(E_ALL);
+require_once '../../core/autoload.php';
 require_once '../../core/bootstrap.php';
-require_once '../models/HelloWorld.php';
 
-function vd($var, $stop = true) {
-    echo '<pre>';
-    var_dump($var);
-    echo '</pre>';
-    if ($stop) {
-        die;
-    }
-}
+defined('BASE_PATH') or define('BASE_PATH', '/opt/lampp/htdocs/other_projects/mvc-framework/');

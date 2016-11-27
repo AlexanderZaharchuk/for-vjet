@@ -5,7 +5,7 @@ namespace core\helpers;
 /**
  * Class UrlParserHelper
  */
-class UrlParserHelper
+class UrlParserHelper extends CommonHelper
 {
     /**
      * It causes any URL to the form
