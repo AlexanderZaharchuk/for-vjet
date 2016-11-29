@@ -40,7 +40,7 @@ class Route
     {
         require_once "../../$this->module/controllers/$this->controller.php";
         $namespace = "$this->module\\controllers\\$this->controller";
-        $call = [new $namespace, $this->action];
-        $call();
+        $controller = new $namespace;
+        $controller->{$this->action}();
     }
 }

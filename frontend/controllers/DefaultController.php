@@ -2,13 +2,17 @@
 
 namespace frontend\controllers;
 
+use core\controllers\Controller;
+
 /**
  * Class DefaultController
  */
-class DefaultController
+class DefaultController extends Controller
 {
-    public static function actionIndex()
+    public function actionIndex()
     {
-        echo 'I am alive!';
+        $this->render('views/index.php', [
+            'test' => 'test1111'
+        ]);
     }
 }
