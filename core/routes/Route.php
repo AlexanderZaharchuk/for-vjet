@@ -35,7 +35,9 @@ class Route
         }
     }
 
-    
+    /**
+     * Running routing
+     */
     public function run()
     {
         require_once "../../$this->module/controllers/$this->controller.php";

@@ -18,6 +18,17 @@ class DefaultController extends Controller
             'records' => $records
         ]);
     }
+    
+    public function actionView()
+    {
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+        $result = $this->mysqli->query("SELECT * FROM posts WHERE id = '$id'")->fetch_assoc();
+
+        $this->render('views/view.php', [
+            'record' => $result
+        ]);
+    }
 
     public function actionCreate()
     {
