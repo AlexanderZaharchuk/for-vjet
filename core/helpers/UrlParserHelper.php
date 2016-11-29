@@ -27,7 +27,7 @@ class UrlParserHelper
         $url = [
             'module' => isset($url[0]) ? $url[0] : false,
             'controller' => isset($url[1]) ? self::parseCamelCaseParser($url[1])."Controller" : false,
-            'action' => isset($url[2]) ? "action".self::parseCamelCaseParser($url[2]).'()' : false
+            'action' => isset($url[2]) ? "action".self::parseCamelCaseParser($url[2]) : false
         ];
 
         return $url;
