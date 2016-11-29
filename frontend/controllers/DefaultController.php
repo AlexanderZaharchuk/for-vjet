@@ -11,9 +11,9 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        $result = $this->mysqli->query("SELECT * FROM posts");
+        $result = $this->mysqli->query("SELECT * FROM posts ORDER BY created_at");
         $records = $this->readAllRecords($result);
-        
+
         $this->render('views/index.php', [
             'records' => $records
         ]);
@@ -44,10 +44,16 @@ class DefaultController extends Controller
     public function readAllRecords($rows)
     {
         $result = [];
-        foreach ($rows as $key => $value) {
-            $result[$key] = $value;
+        while (false != $record = $rows->fetch_assoc()) {
+            (isset($record['text'])) ? $record['text'] = $this->getNiceSubStr($record['text'], 100)."..." : null;
+            $result[] = $record;
         }
 
         return $result;
+    }
+
+    function getNiceSubStr($str, $len, $chr = ' ')
+    {
+        return mb_substr($str, 0, mb_strpos($str, $chr, $len));
     }
 }

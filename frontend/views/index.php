@@ -1,9 +1,10 @@
 <?php foreach ($records as $key => $value): ?>
 <article>
     <header>
-        <h1><?= $value['autor'] ?></h1>
+        <h1><a href="/frontend/default/view?id=<?= $value['id'] ?>"><?= $value['autor'] ?></a></h1>
     </header>
     <p style="width: 600px"><?= $value['text'] ?></p>
+    <p><b>Количество комментариев: </b><?= $value['comments'] ?></p>
     <?= date("Y-m-d H:i:s", $value['created_at']) ?>
 </article><hr>
 <?php endforeach; ?>
