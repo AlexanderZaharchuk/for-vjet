@@ -11,7 +11,7 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        $result = $this->mysqli->query("SELECT * FROM posts ORDER BY created_at");
+        $result = $this->mysqli->query("SELECT * FROM posts ORDER BY created_at DESC");
         $records = $this->readAllRecords($result, true);
 
         $top = $this->mysqli->query("SELECT * FROM posts ORDER BY comments DESC LIMIT 5");

@@ -28,7 +28,14 @@ class Controller
     {
         header("Location: $url");
     }
-    
+
+    public function refresh()
+    {
+        $page = $_SERVER['PHP_SELF'];
+        $sec = "10";
+        header("Refresh: $sec; url=$page");
+    }
+
     public function actionError()
     {
         $this->render('views/error.php');

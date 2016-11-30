@@ -9,6 +9,7 @@
     </style>
 </head>
 <body>
+    <p><a href="/frontend/default/index">Главная</a></p>
     <article>
         <header>
             <h1><?= $review['autor'] ?></h1>
