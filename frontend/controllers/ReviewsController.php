@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use core\controllers\Controller;
+use frontend\models\ReviewsModel;
 
 class ReviewsController extends Controller
 {
@@ -12,8 +13,10 @@ class ReviewsController extends Controller
         $autor_reviewer = isset($_POST['autor_reviewer']) ? $this->mysqli->real_escape_string($_POST['autor_reviewer']) : null;
         $text_reviewer = isset($_POST['text_reviewer']) ? $this->mysqli->real_escape_string($_POST['text_reviewer']) : null;
 
-        $successful1 = $this->mysqli->query("INSERT INTO reviews (post_id, autor_reviewer, text_reviewer) VALUES ('$id', '$autor_reviewer', '$text_reviewer')");
-        $successful2 = $this->mysqli->query("UPDATE posts SET comments = comments + 1 WHERE id = '$id'");
+        $model = new ReviewsModel();
+
+        $successful1 = $model->insertIntoReviews($id, $autor_reviewer, $text_reviewer);
+        $successful2 = $model->incrementComment($id);
 
         if ($successful1 && $successful2) {
             $this->redirect('/frontend/default/view?id='.$id);
