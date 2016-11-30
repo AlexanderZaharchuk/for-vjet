@@ -28,4 +28,9 @@ class Controller
     {
         header("Location: $url");
     }
+    
+    public function actionError()
+    {
+        $this->render('views/error.php');
+    }
 }
