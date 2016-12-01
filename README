@@ -1,0 +1,28 @@
+Добрый день, далее я прилагаю инструкцию по установке тестового задания:
+
+1. Перейдите в каталог для установки проекта и подтяните к себе проект: git clone -b test https://github.com/AlexanderZaharchuk/for-vjet.git
+
+2. Создайте в phpMyAdmin базу данных и импортируйте в нее базу которая лежит в проекте по адресу core/mini-blog.sql
+
+2. Перейдите в корень установленного проекта, затем к файлу расположенному в core/configDb.php и заполните настройки для базы данных.
+
+3. Настройки для сервера (вставьте путь до проекта вместо YOUR_LOCAL_PATH):
+
+файл hosts: 
+127.0.0.1 vjet.test
+
+файл httpd-vhosts.conf:
+<VirtualHost *:80>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "YOUR_LOCAL_PATH/frontend/web/"
+    ServerName vjet.test
+    ServerAlias vjet.test
+    ErrorLog "logs/dummy-host.example.com-error_log"
+    CustomLog "logs/dummy-host.example.com-access_log" common
+</VirtualHost>
+
+4. Пожалуйста, перезапустите сервер
+
+5. Вбейте в адресной строке браузера vjet.test/frontend (или ВАШ_ХОСТ/frontend) и начните создавать записи
+
+Благодарю.
