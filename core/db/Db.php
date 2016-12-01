@@ -23,27 +23,32 @@ class Db
     /**
      * @var string
      */
-    private $_host = "localhost";
+    private $_host;
 
     /**
      * @var string
      */
-    private $_username = "root";
+    private $_username;
 
     /**
      * @var string
      */
-    private $_password = "";
+    private $_password;
 
     /**
      * @var string
      */
-    private $_database = "mvc-framework";
-    
+    private $_database;
+
     /**
      * Db constructor.
+     * @param $config
      */
-    private function __construct() {
+    private function __construct($config) {
+        $this->_host = $config['host'];
+        $this->_username = $config['username'];
+        $this->_password = $config['password'];
+        $this->_database = $config['database'];
         $this->_connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
         $this->_connection->set_charset("utf8");
 
@@ -51,14 +56,15 @@ class Db
             trigger_error("Failed connect to MySQL: " . mysqli_connect_error(), E_USER_ERROR);
         }
     }
-    
+
     /**
      * Singleton class
+     * @param $config
      * @return Db
      */
-    public static function getInstance() {
-        if(!self::$_instance) { // If no instance then make one
-            self::$_instance = new self();
+    public static function getInstance($config) {
+        if(!self::$_instance) {
+            self::$_instance = new self($config);
         }
 
         return self::$_instance;

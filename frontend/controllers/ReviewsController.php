@@ -9,11 +9,11 @@ class ReviewsController extends Controller
 {
     public function actionCreate()
     {
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
-        $autor_reviewer = isset($_POST['autor_reviewer']) ? $this->mysqli->real_escape_string($_POST['autor_reviewer']) : null;
-        $text_reviewer = isset($_POST['text_reviewer']) ? $this->mysqli->real_escape_string($_POST['text_reviewer']) : null;
-
         $model = new ReviewsModel();
+
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        $autor_reviewer = isset($_POST['autor_reviewer']) ? $model->mysqli->real_escape_string($_POST['autor_reviewer']) : null;
+        $text_reviewer = isset($_POST['text_reviewer']) ? $model->mysqli->real_escape_string($_POST['text_reviewer']) : null;
 
         $successful1 = $model->insertIntoReviews($id, $autor_reviewer, $text_reviewer);
         $successful2 = $model->incrementComment($id);

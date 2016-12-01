@@ -2,18 +2,13 @@
 
 namespace core\controllers;
 
-use core\db\Db;
-
 class Controller
 {
-    public $mysqli;
-    
-    public function __construct()
-    {
-        $db = Db::getInstance();
-        $this->mysqli = $db->getConnection();
-    }
-
+    /**
+     * Render view
+     * @param $view
+     * @param array $params
+     */
     public function render($view, $params = []) {
         extract($params);
 
@@ -23,12 +18,19 @@ class Controller
 
         echo $renderedView;
     }
-    
+
+    /**
+     * Redirect page
+     * @param $url
+     */
     public function redirect($url)
     {
         header("Location: $url");
     }
 
+    /**
+     * Refresh page
+     */
     public function refresh()
     {
         $page = $_SERVER['PHP_SELF'];
@@ -36,6 +38,9 @@ class Controller
         header("Refresh: $sec; url=$page");
     }
 
+    /**
+     * Render error page
+     */
     public function actionError()
     {
         $this->render('views/error.php');

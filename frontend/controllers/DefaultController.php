@@ -11,6 +11,9 @@ use frontend\models\DefaultModel;
  */
 class DefaultController extends Controller
 {
+    /**
+     * Page last records action
+     */
     public function actionIndex()
     {
         $model = new DefaultModel();
@@ -26,7 +29,10 @@ class DefaultController extends Controller
             'topResult' => $topResult
         ]);
     }
-    
+
+    /**
+     * Page record action
+     */
     public function actionView()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -45,14 +51,17 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * Creating a record action
+     */
     public function actionCreate()
     {
-        $name = isset($_POST['name']) ? $this->mysqli->real_escape_string($_POST['name']) : null;
-        $text = isset($_POST['text']) ? $this->mysqli->real_escape_string($_POST['text']) : null;
-        $created_at = time();
-
         $model = new DefaultModel();
 
+        $name = isset($_POST['name']) ? $model->mysqli->real_escape_string($_POST['name']) : null;
+        $text = isset($_POST['text']) ? $model->mysqli->real_escape_string($_POST['text']) : null;
+        $created_at = time();
+        
         $successful = $model->createPost($name, $text, $created_at);
 
         if ($successful) {
